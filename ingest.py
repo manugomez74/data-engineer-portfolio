@@ -1,32 +1,18 @@
-# ingest.py
-"""
-Ingest script - placeholder version.
-Lee un CSV de data/raw/sample.csv y escribe una versión procesada en data/processed/sample_processed.csv
-Este archivo será ampliado durante el Day 1.
-"""
+import os
+import requests
 
-from pathlib import Path
-import pandas as pd
+# Crear carpeta de destino si no existe
+os.makedirs("data/raw", exist_ok=True)
 
-def main():
-    repo_root = Path(__file__).resolve().parent
-    raw = repo_root / "data" / "raw"
-    processed = repo_root / "data" / "processed"
-    raw.mkdir(parents=True, exist_ok=True)
-    processed.mkdir(parents=True, exist_ok=True)
+# URL del dataset de ejemplo (puedes cambiarlo más adelante)
+url = "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/titanic.csv"
+output_path = "data/raw/titanic.csv"
 
-    input_csv = raw / "sample.csv"
-    if not input_csv.exists():
-        print(f"[ERROR] No encuentro {input_csv}. Sube sample.csv a data/raw/ o crea una muestra.")
-        return
+print("Descargando dataset desde:", url)
+response = requests.get(url)
 
-    print(f"Leyendo {input_csv} ...")
-    df = pd.read_csv(input_csv)
-    print("Primeras 3 filas:")
-    print(df.head(3).to_string())
-    out = processed / "sample_processed.csv"
-    df.dropna(how="all").to_csv(out, index=False)
-    print(f"Guardado procesado en {out}. Filas: {len(df)}")
+# Guardar el archivo
+with open(output_path, "wb") as f:
+    f.write(response.content)
 
-if __name__ == "__main__":
-    main()
+print("✅ Descarga completada. Archivo guardado en:", output_path)
