@@ -41,3 +41,49 @@ df.to_csv(processed_path, index=False)
 
 print(f"\n✅ Limpieza completada. Archivo guardado en: {processed_path}")
 print(f"Filas finales: {len(df)} | Columnas: {len(df.columns)}")
+
+# VALIDACION DE LA CALIDAD
+
+print("\n=== Validación extendida de calidad ===")
+
+# 1️⃣ Nulos
+print("\n% Nulos por columna:")
+print(df.isnull().mean().sort_values(ascending=False) * 100)
+
+# 2️⃣ Duplicados
+print("\nFilas duplicadas:", df.duplicated().sum())
+
+# 3️⃣ Tipos de datos
+print("\nTipos de datos:")
+print(df.dtypes)
+
+# 4️⃣ Cardinalidad de categóricas
+categoricas = df.select_dtypes(include='object').columns
+for col in categoricas:
+    print(f"\nCardinalidad de {col}: {df[col].nunique()} valores únicos")
+
+
+# INDICE DE CALIDAD
+
+# --- Data Quality Score ---
+import numpy as np
+
+# Pesos base
+pesos = {
+    'completitud': 0.4,
+    'unicidad': 0.3,
+    'validez': 0.3
+}
+
+# Completitud
+completitud = 1 - (df.isnull().mean().mean())
+
+# Unicidad
+unicidad = 1 if df.duplicated().sum() == 0 else 0
+
+# Validez (por ahora asumimos correcta tipología)
+validez = 1
+
+# Puntaje global
+score = np.average([completitud, unicidad, validez], weights=list(pesos.values()))
+print(f"\n📊 Data Quality Score: {score:.2%}")
