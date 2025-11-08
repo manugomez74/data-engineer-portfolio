@@ -1,33 +1,61 @@
-# Data Engineer Portfolio
+# 🚀 Data Engineer Portfolio — Manu Gómez
 
-## Objetivo del proyecto
-Desarrollar un pipeline ETL que ingiera datos públicos, los transforme con Python/dbt y los cargue en Azure SQL / Data Lake. Visualización final con Power BI.
+Bienvenido a mi portafolio de proyectos como **Ingeniero de Datos**.  
+Cada proyecto muestra mis habilidades en adquisición, limpieza, validación y transformación de datos, aplicando buenas prácticas de ingeniería y documentación técnica.
 
-## Estructura de carpetas
-- data/raw/: datos originales (subir `sample.csv` aquí)
-- data/processed/: datos procesados (salida del pipeline)
-- ingest.py: script de ingestión principal
+---
 
-## Dependencias mínimas
-- Python 3.8+
-- pandas
-- git
+## 📂 Estructura del repositorio
 
-## Estado
-En progreso. Día 1: estructura inicial creada.
+data-engineer-portfolio/
+│
+├── data/ # Datos brutos y procesados
+│ ├── raw/ # Datos originales
+│ ├── processed/ # Datos limpios y transformados
+│ └── outputs/ # Resultados o exportaciones
+│
+├── ingest.py # Ingesta de datos
+├── transform.py # Limpieza, validación y transformación
+├── README_TITANIC.md # Documentación detallada del dataset Titanic
+└── README.md # Este archivo (índice principal)
 
-## Cómo ejecutar (mínimo)
-1. Clona el repo:
-   `git clone https://github.com/manugomez74/data-engineer-portfolio.git`
-2. Crea y activa entorno virtual:
-   `python -m venv venv`  
-   Windows PowerShell: `.\venv\Scripts\Activate.ps1`  
-   macOS/Linux: `source venv/bin/activate`
-3. Instala dependencias:
-   `pip install pandas`
-4. Coloca tu CSV en `data/raw/sample.csv`
-5. Ejecuta:
-   `python ingest.py`
 
-## Contacto
-https://linkedin.com/in/tu-perfil
+---
+
+## 🧠 Proyectos
+
+### 🛳️ [1. Titanic Data Cleaning & Validation](./README_TITANIC.md)
+**Objetivo:** aplicar un flujo completo de ingeniería de datos sobre el dataset del Titanic.  
+**Incluye:**
+- Ingesta de datos (`ingest.py`)
+- Limpieza y transformación (`transform.py`)
+- Validación de calidad (nulos, duplicados, tipos y cardinalidad)
+- Documentación técnica y justificación de decisiones
+
+🧾 *Archivo final procesado:* [`data/processed/titanic_clean.csv`](./data/processed/titanic_clean.csv)
+
+---
+
+## ⚙️ Tecnologías y herramientas utilizadas
+
+- **Python 3.10+**
+- **Pandas / NumPy**
+- **Jupyter / VS Code**
+- **Git / GitHub**
+- **Data Quality Metrics (completitud, consistencia, unicidad, validez)**
+
+---
+
+## 🎯 Próximos pasos
+
+- Añadir un pipeline con **Airflow o Prefect** para automatizar las tareas ETL.
+- Incluir un proyecto de análisis de logs o datasets de gran volumen.
+- Conectar a un **Data Warehouse (BigQuery / Snowflake)**.
+- Implementar dashboards con **Metabase / Power BI / Streamlit**.
+
+---
+
+📬 **Contacto profesional:**  
+[LinkedIn](https://www.linkedin.com/in/manugomez74)  
+[GitHub](https://github.com/manugomez74)
+
